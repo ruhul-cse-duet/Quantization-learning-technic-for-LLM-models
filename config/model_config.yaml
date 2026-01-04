@@ -1,0 +1,65 @@
+# LLM Quantization Configuration File
+
+# Base model configuration
+model:
+  name: "HuggingFaceH4/zephyr-7b-beta"
+  cache_dir: "./models"
+  
+  # Pre-quantized model names for different methods
+  gptq_model_name: "TheBloke/zephyr-7B-beta-GPTQ"
+  gguf_model_name: "TheBloke/zephyr-7B-beta-GGUF"
+  awq_model_name: "TheBloke/zephyr-7B-beta-AWQ"
+
+# Quantization method configurations
+quantization:
+  
+  # BitsAndBytes configuration
+  bitsandbytes:
+    load_in_4bit: true
+    bnb_4bit_quant_type: "nf4"  # Options: "nf4", "fp4"
+    bnb_4bit_use_double_quant: true
+    bnb_4bit_compute_dtype: "bfloat16"  # Options: "float32", "float16", "bfloat16"
+  
+  # GPTQ configuration
+  gptq:
+    bits: 4  # Quantization bits
+    group_size: 128  # Group size for quantization
+    desc_act: false  # Use desc_act for better accuracy
+  
+  # GGUF configuration
+  gguf:
+    model_file: "zephyr-7b-beta.Q4_K_M.gguf"
+    model_type: "mistral"  # Model architecture type
+    gpu_layers: 0  # Number of layers to offload to GPU (0 for CPU-only)
+    context_length: 2048  # Maximum context window
+    # Available quantization levels: Q2_K, Q3_K_S, Q3_K_M, Q3_K_L, Q4_0, Q4_K_S, Q4_K_M, Q5_0, Q5_K_S, Q5_K_M, Q6_K, Q8_0
+  
+  # AWQ configuration
+  awq:
+    bits: 4
+    quantization: "awq"
+    dtype: "half"  # Options: "float16", "half", "bfloat16"
+    gpu_memory_utilization: 0.90  # GPU memory to use (0.0 to 1.0)
+    max_model_len: 4096  # Maximum sequence length
+
+# Generation parameters
+generation:
+  max_length: 256
+  temperature: 0.7
+  top_p: 0.95
+  top_k: 50
+  repetition_penalty: 1.1
+
+# Benchmark configuration
+benchmark:
+  num_runs: 3
+  test_prompts:
+    - "What is artificial intelligence?"
+    - "Explain machine learning in simple terms."
+    - "How does deep learning work?"
+  
+# Logging configuration
+logging:
+  level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "quantization.log"
