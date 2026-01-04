@@ -208,7 +208,9 @@ MIT License - feel free to use for learning and projects
 
 ## 📧 Contact
 
-Ruhul Amin['https://www.linkedin.com/in/ruhul-duet-cse/']
+Ruhul Amin
+
+LindeIn: (https://www.linkedin.com/in/ruhul-duet-cse/)
 
 For questions or support, please open an issue or
 contact: ruhul.cse.duet@gmail.com
