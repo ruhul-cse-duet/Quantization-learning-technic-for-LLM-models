@@ -208,7 +208,12 @@ MIT License - feel free to use for learning and projects
 
 ## 📧 Contact
 
-For questions or suggestions, please open an issue on GitHub.
+Ruhul Amin['https://www.linkedin.com/in/ruhul-duet-cse/']
+
+For questions or support, please open an issue or
+contact: ruhul.cse.duet@gmail.com
+
+
 
 ---
 
